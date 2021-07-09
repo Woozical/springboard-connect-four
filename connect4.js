@@ -8,6 +8,12 @@
 const WIDTH = 7;
 const HEIGHT = 6;
 
+// awaitStart - Currently waiting for the user to start the game for the first time.
+// inProg - A game is currently being played
+// over - A game is finished and awaiting restart
+const STATE = {awaitStart : 0, inProg : 1, over : 2};
+let gameState = STATE.awaitStart;
+
 let currPlayer = 1; // active player: 1 or 2
 const board = []; // array of rows, each row is array of cells  (board[y][x])
 
@@ -50,7 +56,7 @@ function makeHtmlBoard() {
     for (let x = 0; x < WIDTH; x++) {
       const cell = document.createElement("td");
       cell.setAttribute("id", `${y}-${x}`);
-      cell.innerText = `Y:${y}, X:${x}` // DEBUG
+      //cell.innerText = `Y:${y}, X:${x}` // DEBUG
       row.append(cell);
     }
     htmlBoard.append(row);
@@ -83,21 +89,45 @@ function placeInTable(y, x) {
   const piece = document.createElement('div');
   piece.classList.add('piece');
   piece.style.backgroundColor = currPlayer === 1 ? 'red' : 'blue';
-  cell.innerText = '';
   cell.append(piece);
 }
 
 /** endGame: announce game end */
-
 function endGame(msg) {
-  // TODO: pop up alert message
   alert(msg);
-  console.log('alert cleared');
+  gameState = STATE.over;
+  document.querySelector('button').removeAttribute('disabled');
+  document.getElementById(`p${currPlayer}Token`).classList.remove('selected');
+}
+
+function clearBoard(){
+  for (let row = 0; row < HEIGHT; row++){
+    for (let col = 0; col < WIDTH; col++){
+      board[row][col] = undefined;
+    }
+  }
+}
+
+function clearHtmlBoard(){
+  const htmlBoard = document.getElementById('board');
+  
+  for (let row=1; row < htmlBoard.children.length; row++){
+    const tableRow = htmlBoard.children[row];
+    
+    for (let col=0; col < tableRow.children.length; col++){
+      const tableCell = tableRow.children[col];
+      tableCell.innerHTML = '';
+    }
+  }
+
 }
 
 /** handleClick: handle click of column top to play piece */
 
 function handleClick(evt) {
+
+  if (gameState !== STATE.inProg) return;
+
   // get x from ID of clicked cell
   const x = +evt.target.id;
   console.log('X:',x); //DEBUG
@@ -123,6 +153,8 @@ function handleClick(evt) {
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   currPlayer = currPlayer === 1 ? 2 : 1;
+  document.getElementById('p1Token').classList.toggle('selected');
+  document.getElementById('p2Token').classList.toggle('selected');
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -159,5 +191,33 @@ function checkForWin() {
   }
 }
 
+// Click handler for control bar
+function controlHandler(e){
+  if (e.target.tagName === 'BUTTON'){
+    switch (gameState){
+
+      case STATE.awaitStart:
+        e.target.setAttribute('disabled', '');
+        document.getElementById('p1Token').classList.toggle('selected');
+        gameState = STATE.inProg;
+        break;
+
+      case STATE.inProg:
+        break;
+
+      case STATE.over:
+        clearBoard();
+        clearHtmlBoard();
+        e.target.removeAttribute('disabled');
+        document.getElementById('p1Token').classList.add('selected');
+        document.getElementById('p2Token').classList.remove('selected');
+        gameState = STATE.inProg;
+        currPlayer = 1;
+        break;
+    }
+  }
+}
+
 makeBoard();
 makeHtmlBoard();
+document.getElementById('controls').addEventListener('click', controlHandler);
