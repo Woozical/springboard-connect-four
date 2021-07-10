@@ -112,7 +112,7 @@ h1 {
   border-radius: 100%;
 }
 
-/* Match Result text */
+/* Match Result Announcer */
 #matchResult{
   margin-top: 5vh;
   text-align: center;
@@ -123,28 +123,44 @@ h1 {
 
 .fade-in{
   animation: fade-in 1s forwards;
+  -webkit-animation: fade-in 1s forwards;
+  -moz-animation: fade-in 1s forwards;
 }
 
 .fade-out{
   animation: fade-out 1s forwards;
+  -webkit-animation: fade-out 1s forwards;
+  -moz-animation: fade-out 1s forwards;
 }
 
 @keyframes fade-in{
-  from{
-    opacity: 0%;
-  }
-  to{
-    opacity: 100%;
-  }
+  from{opacity: 0;}
+  to{opacity: 1;}
 }
 
 @keyframes fade-out{
-  from{
-    opacity: 100;
-  }
-  to{
-    opacity: 0%;
-  }
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
+@-moz-keyframes fade-in{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+@-moz-keyframes fade-out{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
+@-webkit-keyframes fade-in{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+@-webkit-keyframes fade-out{
+  from{opacity: 1;}
+  to{opacity: 0;}
 }
 
 /* column-top is table row of clickable areas for each column */
