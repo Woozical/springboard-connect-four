@@ -203,13 +203,14 @@ function handleClick(evt) {
   // get x from ID of clicked cell
   // each ID is structured "{Y}-{X}", split at '-', 2nd element will be the X coordinate
   const x = +evt.target.id.split('-')[1];
-
+  
+  if (!isFinite(x)) return; // return out if clicked on a gap between cells
+  
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
   if (y === null) {
     return;
   }
-
   // place piece in board and add to HTML table
   placeInTable(y, x);
   board[y][x] = currPlayer;

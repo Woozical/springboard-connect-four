@@ -49,8 +49,8 @@ h1 {
 #controls button {
   background-color: #E63946;
   color: white;
-  border: 3px solid #DA1B2B; 
-  border-radius: 10px;
+  border: 5px solid #EB5C68;
+  border-radius: 5px;
   width: 30%;
   height: 50px;
   transition: all 250ms;
@@ -64,7 +64,8 @@ h1 {
 
 #controls button:disabled{
   background-color: #e6394660;
-  border: 3px solid #DA1B2B60; 
+  border: 3px solid #DA1B2B60;
+  border-radius: 10px;
   color: #ffffff60;
 }
 
