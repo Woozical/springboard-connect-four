@@ -99,7 +99,7 @@ function placeInTable(y, x) {
 
 /** endGame: announce game end */
 function endGame(msg) {
-  alert(msg);
+  document.getElementById('matchResult').innerText = msg;
   gameState = STATE.over;
   document.querySelector('button').removeAttribute('disabled');
   document.getElementById(`p${currPlayer}Token`).classList.remove('selected');
@@ -149,7 +149,7 @@ function handleClick(evt) {
 
   // check for win
   if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
+    return endGame(`Player ${currPlayer} wins!`);
   }
 
   // check for tie
@@ -254,6 +254,7 @@ function controlHandler(e){
         clearBoard();
         clearHtmlBoard();
         e.target.setAttribute('disabled', '');
+        document.getElementById('matchResult').innerText = '';
         document.getElementById('p1Token').classList.add('selected');
         document.getElementById('p2Token').classList.remove('selected');
         gameState = STATE.inProg;

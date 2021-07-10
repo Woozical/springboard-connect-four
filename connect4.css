@@ -5,7 +5,7 @@
 body {
   display: flex;
   background: linear-gradient(135deg, #f0f7df, #a8dadc, #e63946);
-  background-size: 100vw 70vw ;
+  background-size: 100vw 130vh ;
   justify-content: center;
   font-family: Helvetica, Arial , sans-serif;
 }
@@ -31,7 +31,7 @@ h1 {
 
 #controls{
   position: relative;
-  margin-bottom: 2vw;
+  margin-bottom: 5vh;
   display: flex;
   width: 120%;
   position: relative;
@@ -83,7 +83,7 @@ h1 {
 }
 
 #controls .selected{
-  border: 3px solid white;
+  border: 3px solid black;
 }
 
 /* game board table */
@@ -110,6 +110,15 @@ h1 {
   width: 90%;
   height: 90%;
   border-radius: 100%;
+}
+
+/* Match Result text */
+#matchResult{
+  margin-top: 5vh;
+  text-align: center;
+  background-color: #ffffff60;
+  border-radius: 10px;
+  transition: all 500ms;
 }
 
 /* column-top is table row of clickable areas for each column */
