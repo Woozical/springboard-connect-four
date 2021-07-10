@@ -5,8 +5,7 @@
 body {
   display: flex;
   background: linear-gradient(135deg, #f0f7df, #a8dadc, #e63946);
-  background-repeat: no-repeat; 
-  background-size: 100% 130% ;
+  background-size: 100vw 70vw ;
   justify-content: center;
   font-family: Helvetica, Arial , sans-serif;
 }
