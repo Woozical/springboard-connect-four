@@ -17,16 +17,21 @@ let gameState = STATE.awaitStart;
 let currPlayer = 1; // active player: 1 or 2
 let board = []; // array of rows, each row is array of cells  (board[y][x])
 
+let player1Color = 'red';
+let player2Color = 'blue';
+
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
   // set "board" to empty HEIGHT x WIDTH matrix array
-  for (let i = 0; i < HEIGHT; i++){
+  for (let y = 0; y < HEIGHT; y++){
     const newRow = [];
-    newRow.length = WIDTH;
-    board.push(newRow);
+    for (let x = 0; x < WIDTH; x++){
+      newRow[x] = undefined;
+    }
+    board[y] = newRow;
   }
 }
 
@@ -88,7 +93,7 @@ function placeInTable(y, x) {
   const cell = document.getElementById(`${y}-${x}`);
   const piece = document.createElement('div');
   piece.classList.add('piece');
-  piece.style.backgroundColor = currPlayer === 1 ? 'red' : 'blue';
+  piece.style.backgroundColor = currPlayer === 1 ? player1Color : player2Color;
   cell.append(piece);
 }
 
