@@ -4,42 +4,70 @@
 
 body {
   display: flex;
-  background-color: var(--main-bg-color);
+  background: linear-gradient(135deg, #f0f7df, #a8dadc, #e63946);
+  background-repeat: no-repeat; 
+  background-size: 100% 130% ;
   justify-content: center;
-  font-family: Helvetica, Arial , sans-serif
+  font-family: Helvetica, Arial , sans-serif;
 }
 
+
+/* Header and Control Panel */
+
 h1 {
+  padding-top: 2%;
+  padding-bottom: 5%;
   text-align: center;
-  background-color: #A8DADC;
+  background-color: #7FACC7;
+  border: 5px hidden #457B9D;
+  border-bottom: none;  
+  position: relative;
+  width: 120%;
+  right: 10%; 
+  top: 4%;
+  box-shadow: 0px 10px 10px #32597180
 }
 
 #controls{
-  margin-top: 1vw;
+  position: relative;
   margin-bottom: 1vw;
-  width: 100%;
-  background-color: #457B9D;
-  height: 25%;
-  color: white;
+  display: flex;
+  width: 120%;
+  position: relative;
+  right: 10%;
+  background-color: #7FACC7;
+  border: 5px hidden #457B9D;
+  border-top: none;
+  height: auto;
+  justify-content: center;
+  box-shadow: 0px 10px 10px #32597180
 }
 
 #controls button {
   background-color: #E63946;
   color: white;
-  border: none; 
+  border: 3px solid #DA1B2B; 
+  border-radius: 10px;
   width: 30%;
+  height: 50px;
   transition: all 250ms;
+  position: relative;
+  top: 15px;
+}
+
+#controls button:hover{
+  background-color: #E94957;
 }
 
 #controls button:disabled{
   background-color: #e6394660;
+  border: 3px solid #DA1B2B60; 
   color: #ffffff60;
 }
 
 .pDisplay{
   display: inline-block;
   text-align: center;
-  text-decoration: underline;
   margin-left: 5%;
   margin-right: 5%;
 }
@@ -47,15 +75,15 @@ h1 {
 #controls .piece{
   width: 50px;
   height: 50px;
-  border: 3px solid white;
+  border: 3px solid rgba(0,0,0,0);
+  transition: all 250ms;
 }
 
 #controls .selected{
-  border: 3px solid green;
+  border: 3px solid #1D3557;
 }
 
 /* game board table */
-
 
 
 #board td {
@@ -64,8 +92,12 @@ h1 {
   border: 1px solid #1D3557;
   outline: 2px solid #1D3557;
   background-image:url('slot.png');
-  background-color: var(--main-bg-color);;
   background-size: 100%; 
+  transition: all 100ms;
+}
+
+#board td:hover {
+  background-color: #e6394680;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
@@ -77,13 +109,10 @@ h1 {
   border-radius: 100%;
 }
 
-/* TODO: make pieces red/blue,  depending on player 1/2 piece */
-
 /* column-top is table row of clickable areas for each column */
 
 #column-top td {
   background-image: none;
-  background-color: var(--main-bg-color);;
   border: dashed 1px lightgray;
   transition: all 250ms;
 }
