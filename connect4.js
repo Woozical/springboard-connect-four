@@ -92,8 +92,10 @@ function placeInTable(y, x) {
   // make a div and insert into correct table cell
   const cell = document.getElementById(`${y}-${x}`);
   const piece = document.createElement('div');
+  const topPos = (y+1) * 53; // 53 - roughly the amount of pixels between each piece
+
+  piece.style = `top: -${topPos}px; background-color: ${currPlayer === 1 ? player1Color : player2Color}`
   piece.classList.add('piece');
-  piece.style.backgroundColor = currPlayer === 1 ? player1Color : player2Color;
   cell.append(piece);
 }
 
