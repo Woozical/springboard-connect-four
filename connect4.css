@@ -17,8 +17,10 @@ h1 {
   padding-top: 2%;
   padding-bottom: 5%;
   text-align: center;
-  background-color: #7FACC7;
-  border: 5px hidden #457B9D;
+  /*background-color: #7FACC7;*/
+  background-color:#F7FBEF;
+  color:black;
+  border: 1px solid #000000;
   border-bottom: none;  
   position: relative;
   width: 120%;
@@ -29,13 +31,15 @@ h1 {
 
 #controls{
   position: relative;
-  margin-bottom: 1vw;
+  margin-bottom: 2vw;
   display: flex;
   width: 120%;
   position: relative;
   right: 10%;
-  background-color: #7FACC7;
-  border: 5px hidden #457B9D;
+  /*background-color: #7FACC7;*/
+  background-color:#F7FBEF;
+  color:black;
+  border: 1px solid #000000;
   border-top: none;
   height: auto;
   justify-content: center;
@@ -79,7 +83,7 @@ h1 {
 }
 
 #controls .selected{
-  border: 3px solid #1D3557;
+  border: 3px solid white;
 }
 
 /* game board table */
@@ -92,11 +96,11 @@ h1 {
   outline: 2px solid #1D3557;
   background-image:url('slot.png');
   background-size: 100%; 
-  transition: all 100ms;
+  transition: all 200ms;
 }
 
 #board td:hover {
-  background-color: #e6394680;
+  background-color: #f5864f80;
 }
 
 /* pieces are div within game table cells: draw as colored circles */
@@ -109,7 +113,7 @@ h1 {
 }
 
 /* column-top is table row of clickable areas for each column */
-
+/* DEPREC
 #column-top td {
   background-image: none;
   border: dashed 1px lightgray;
@@ -119,3 +123,4 @@ h1 {
 #column-top td:hover {
   background-color: #e6394680;
 }
+*/

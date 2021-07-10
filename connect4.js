@@ -40,19 +40,19 @@ function makeBoard() {
 function makeHtmlBoard() {
   //get "htmlBoard" variable from the item in HTML w/ID of "board"
   const htmlBoard = document.querySelector('#board');
-
+  htmlBoard.addEventListener("click", handleClick);
   // create top row for user input
   // user will click above the column where they want to drop their piece
-  const top = document.createElement("tr");
-  top.setAttribute("id", "column-top");
-  top.addEventListener("click", handleClick);
+  // const top = document.createElement("tr");
+  // top.setAttribute("id", "column-top");
+  // top.addEventListener("click", handleClick);
 
-  for (let x = 0; x < WIDTH; x++) {
-    let headCell = document.createElement("td");
-    headCell.setAttribute("id", x);
-    top.append(headCell);
-  }
-  htmlBoard.append(top);
+  // for (let x = 0; x < WIDTH; x++) {
+  //   let headCell = document.createElement("td");
+  //   headCell.setAttribute("id", x);
+  //   top.append(headCell);
+  // }
+  // htmlBoard.append(top);
 
   // populate the board HTML table with cells
   // give each cell an ID matching its position in the 'board' array matrix
@@ -134,7 +134,8 @@ function handleClick(evt) {
   if (gameState !== STATE.inProg) return;
 
   // get x from ID of clicked cell
-  const x = +evt.target.id;
+  // each ID is structured "{Y}-{X}", split at '-', 2nd element will be the X coordinate
+  const x = +evt.target.id.split('-')[1];
   //console.log('X:',x); //DEBUG
   // get next spot in column (if none, ignore click)
   const y = findSpotForCol(x);
