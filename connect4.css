@@ -1,6 +1,10 @@
+:root{
+  --main-bg-color: #F0F7DF;
+}
+
 body {
   display: flex;
-  background-color: #F1FAEE;
+  background-color: var(--main-bg-color);
   justify-content: center;
   font-family: Helvetica, Arial , sans-serif
 }
@@ -52,19 +56,24 @@ h1 {
 
 /* game board table */
 
+
+
 #board td {
   width: 50px;
   height: 50px;
-  border: solid 1px #1D3557;
+  border: 1px solid #1D3557;
+  outline: 2px solid #1D3557;
+  background-image:url('slot.png');
+  background-color: var(--main-bg-color);;
+  background-size: 100%; 
 }
 
 /* pieces are div within game table cells: draw as colored circles */
 
 .piece {
-  /* TODO: make into circles */
-  margin: 5px;
-  width: 80%;
-  height: 80%;
+  margin: 5%;
+  width: 90%;
+  height: 90%;
   border-radius: 100%;
 }
 
@@ -73,10 +82,12 @@ h1 {
 /* column-top is table row of clickable areas for each column */
 
 #column-top td {
+  background-image: none;
+  background-color: var(--main-bg-color);;
   border: dashed 1px lightgray;
   transition: all 250ms;
 }
 
 #column-top td:hover {
-  background-color: #E6394690;
+  background-color: #e6394680;
 }
