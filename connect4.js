@@ -99,17 +99,39 @@ function placeInTable(y, x) {
 
 /** endGame: announce game end */
 function endGame(msg) {
-  document.getElementById('matchResult').innerText = msg;
+
+  announceMessage(msg);
+  
   gameState = STATE.over;
   document.querySelector('button').removeAttribute('disabled');
   document.getElementById(`p${currPlayer}Token`).classList.remove('selected');
 }
 
+// sets all indices of board to undefined
 function clearBoard(){
   for (let row = 0; row < HEIGHT; row++){
     for (let col = 0; col < WIDTH; col++){
       board[row][col] = undefined;
     }
+  }
+}
+
+// Function to handle DOM manipulation and animation timing of announcer div
+// 'duration' param is number of milliseconds before announcer should fade out
+// if 0, announcer stays on screen until something else clears it
+function announceMessage(msg, duration=0){
+  const announcer = document.getElementById('matchResult');
+  announcer.classList.remove('fade-out');
+  announcer.innerText = msg;
+  announcer.classList.add('fade-in');
+
+  if (duration !== 0){
+    const timer = setTimeout(
+      () => {
+        announcer.classList.remove('fade-in');
+        announcer.classList.add('fade-out');
+        clearInterval(timer);
+      },duration)
   }
 }
 
@@ -245,6 +267,7 @@ function controlHandler(e){
         e.target.setAttribute('disabled', '');
         document.getElementById('p1Token').classList.toggle('selected');
         gameState = STATE.inProg;
+        announceMessage('Good luck!', 2500);
         break;
 
       case STATE.inProg:
@@ -254,7 +277,8 @@ function controlHandler(e){
         clearBoard();
         clearHtmlBoard();
         e.target.setAttribute('disabled', '');
-        document.getElementById('matchResult').innerText = '';
+        document.getElementById('matchResult').classList.remove('fade-in');
+        document.getElementById('matchResult').classList.add('fade-out');
         document.getElementById('p1Token').classList.add('selected');
         document.getElementById('p2Token').classList.remove('selected');
         gameState = STATE.inProg;

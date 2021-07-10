@@ -121,6 +121,32 @@ h1 {
   transition: all 500ms;
 }
 
+.fade-in{
+  animation: fade-in 1s forwards;
+}
+
+.fade-out{
+  animation: fade-out 1s forwards;
+}
+
+@keyframes fade-in{
+  from{
+    opacity: 0%;
+  }
+  to{
+    opacity: 100%;
+  }
+}
+
+@keyframes fade-out{
+  from{
+    opacity: 100;
+  }
+  to{
+    opacity: 0%;
+  }
+}
+
 /* column-top is table row of clickable areas for each column */
 /* DEPREC
 #column-top td {
