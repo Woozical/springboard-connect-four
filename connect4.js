@@ -168,7 +168,6 @@ function checkForWin() {
     );
   }
 
-  // TODO: read and understand this code. Add comments to help you.
   // Traverses the matrix from 'left' to 'right', row by row
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {
@@ -229,6 +228,13 @@ function handleClick(evt) {
   currPlayer = currPlayer === 1 ? 2 : 1;
   document.getElementById('p1Token').classList.toggle('selected');
   document.getElementById('p2Token').classList.toggle('selected');
+
+  // Perform AI move
+  if (currPlayer === 2){
+    const {coords: move} = pickNextMove(board);
+    console.log(move);
+    handleClick({ target: { id : `${move.row}-${move.col}`}});
+  }
 }
 
 // Click handler for control bar
