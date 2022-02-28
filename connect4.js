@@ -231,8 +231,7 @@ function handleClick(evt) {
 
   // Perform AI move
   if (currPlayer === 2){
-    const {coords: move} = pickNextMove(board);
-    console.log(move);
+    const {coords: move, score} = pickNextMove(board);
     handleClick({ target: { id : `${move.row}-${move.col}`}});
   }
 }
